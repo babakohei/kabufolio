@@ -1,0 +1,9 @@
+<div class="text-center">
+  <% if controller.action_name == "new" %>
+    <h1>銘柄新規登録</h1>
+  <% else %>
+    <h1>銘柄詳細</h1>
+  <% end %>
+</div>
+
+<%= render "form", stock: @stock %>

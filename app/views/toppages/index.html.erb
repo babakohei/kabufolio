@@ -1,0 +1,37 @@
+<% if logged_in? %>
+  <h1>株式銘柄ウォッチリスト</h1>
+  <table class="table">
+    <thead>
+      <tr class="h3">
+        <th>銘柄コード</th>
+        <th>銘柄名</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @watches.each do |watch| %>
+        <tr>
+          <th><%= watch.code %></th>
+          <th><%= watch.name %></th>
+          <th><%= render 'relationships/watch_button', stock: watch %></th>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+    <%= link_to '銘柄一覧へ', stocks_path, class: 'btn btn-lg btn-success' %>
+    <%= link_to '新規銘柄登録', new_stock_path, class: 'btn btn-lg btn-primary' %>
+
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h2>WELCOME TO</h2>
+      <h1>Kabufolio</h1>
+      <h3>ユーザ登録しておすすめの株式銘柄を登録しましょう！！</h3>
+      <h3>ユーザが登録したおすすめ銘柄からオリジナルの</h3>
+      <h3>株式銘柄ウォッチリストの作成ができます！！</h3>
+      <%= link_to 'ログインはこちら', login_path, class: 'btn btn-block btn-primary' %>
+      <%= link_to 'ユーザ登録はこちら', signup_path, class: 'btn btn-block btn-success' %>
+    </div>
+  </div>
+<% end %>

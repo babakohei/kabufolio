@@ -1,0 +1,22 @@
+<h1>銘柄一覧</h1>
+
+<table class="table">
+  <thead>
+    <tr class="h3">
+      <th>銘柄コード</th>
+      <th>銘柄名</th>
+      <th>登録者</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stocks.each do |stock| %>
+      <tr>
+        <th><%= stock.code %></th>
+        <th><%= stock.name %></th>
+        <th><%= stock.user.name %></th>
+        <th><%= render 'relationships/watch_button', stock: stock %></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

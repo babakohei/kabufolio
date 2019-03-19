@@ -1,0 +1,11 @@
+<% if current_user.watching?(stock) %>
+  <%= form_for(current_user.relationships.find_by(stock_id: stock.id), html: { method: :delete }) do |f| %>
+    <%= hidden_field_tag :stock_id, stock.id %>
+    <%= f.submit 'Unwatch', class: 'btn btn-danger btn-lg' %>
+  <% end %>
+<% else %>
+  <%= form_for(current_user.relationships.build) do |f| %>
+    <%= hidden_field_tag :stock_id, stock.id %>
+    <%= f.submit 'Watch', class: 'btn btn-primary btn-lg' %>
+  <% end %>
+<% end %>

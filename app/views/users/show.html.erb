@@ -1,0 +1,37 @@
+<div class="row">
+  <aside class="col-xs-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @user.name %></h3>
+      </div>
+      <div class="panel-body">
+        <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+      </div>
+    </div>
+  </aside>
+  <h1>あなたが登録した銘柄</h1>
+  <div class="col-xs-8">
+    <table class="table">
+      <thead>
+        <tr class="h3">
+          <th>銘柄コード</th>
+          <th>銘柄名</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @stocks.each do |stock| %>
+          <tr>
+            <th><%= link_to stock.code, edit_stock_path(stock) %></th>
+            <th><%= stock.name %></th>
+            <th><%= render 'relationships/watch_button', stock: stock %></th>
+            <th><%= link_to "銘柄削除", stock, method: :delete, data: { confirm: "削除してよろしいですか？"}, class: 'btn btn-danger btn-xs' %></th>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to '新規銘柄登録', new_stock_path, class: 'btn btn-block btn-primary' %>
+  </div>
+</div>
